@@ -4,50 +4,94 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/fireba
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBOvNlZBrFpD8QS9ezqA6vdNCZifn_Ypa0",
-  authDomain: "mantas-92e1c.firebaseapp.com",
-  projectId: "mantas-92e1c",
-  storageBucket: "mantas-92e1c.appspot.com",
-  messagingSenderId: "789054429829",
-  appId: "1:789054429829:web:1fd7b24ef2562b1813e7ec",
-  measurementId: "G-3Q55QJT7MP"
+  apiKey: "AIzaSyCf71wTKKL7pfX6cV0EUoYHj4LQu0yj45o",
+  authDomain: "mantasdb-c3296.firebaseapp.com",
+  databaseURL: "https://mantasdb-c3296-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "mantasdb-c3296",
+  storageBucket: "mantasdb-c3296.appspot.com",
+  messagingSenderId: "1088047303319",
+  appId: "1:1088047303319:web:96958f5f8fae1be13bb7d2"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-import {getDatabase} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+
+import {getDatabase, set, get, update, remove, ref, child}
+from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
 const db = getDatabase();
 
-let number = document.querySelector("#number");
-let name = document.querySelector("#name");
-let quantity = document.querySelector("#quantity");
-let code = document.querySelector("#code");
+let enterCode = document.getElementById("enterCode");
+let enterName = document.getElementById("enterName");
+let enterQuantity = document.getElementById("enterQuantity");
+let selectCode = document.getElementById("selectCode");
+let selectName = document.getElementById("selectName");
+let selectQuantity = document.getElementById("selectQuantity");
 
-let insertBtn = document.getElementById("#insert");
-let updateBtn = document.getElementById("#update");
-let deleteBtn = document.getElementById("#delete");
-let selectBtn = document.getElementById("#select");
+let insertBtn = document.getElementById("insert");
+let updateBtn = document.getElementById("update");
+let removeBtn = document.getElementById("remove");
+let selectBtn = document.getElementById("select");
 
-function InsertData(){
-    setInterval(ref(db, ), {
-        Name:
+function InsertData(evt) {
+  evt.preventDefault();
+  console.log(enterCode.value, enterName.value, enterQuantity.value);
+  set(ref(db, "Products/" + enterCode.value), {
+    Name: enterName.value,
+    ID: enterCode.value,
+    Quantity: enterQuantity.value,
+  })
+    .then(() => {
+      alert("Data added successfully!");
     })
-    
+    .catch((error) => {
+      alert(error);
+    });
 }
-function UpdateData(){
 
+function UpdateData() {
+  const code = selectCode.value;
+  const newName = selectName.value;
+  const newQuantity = selectQuantity.value;
+  update(ref(db, "Products/" + code), {
+    Name: newName,
+    Quantity: newQuantity
+  }).then(() => {
+    alert("Data updated successfully!");
+  }).catch((error) => {
+    alert(error);
+  });
 }
-function DeleteData(){
 
+function RemoveData() {
+  const code = selectCode.value;
+  remove(ref(db, "Products/" + code))
+    .then(() => {
+      alert("Data removed successfully!");
+    })
+    .catch((error) => {
+      alert(error);
+    });
 }
-function SelectData(){
 
+function SelectData() {
+  const code = selectCode.value;
+  get(ref(db, "Products/" + code)).then((snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      selectName.value = data.Name;
+      selectQuantity.value = data.Quantity;
+    } else {
+      alert("No such document!");
+    }
+  }).catch((error) => {
+    alert(error);
+  });
 }
 
 insertBtn.addEventListener("click", InsertData);
 updateBtn.addEventListener("click", UpdateData);
-deleteBtn.addEventListener("click", DeleteData);
+removeBtn.addEventListener("click", RemoveData);
 selectBtn.addEventListener("click", SelectData);
