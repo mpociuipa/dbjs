@@ -14,25 +14,25 @@
     <h2 class="col-12 mb-5 mt-5 text-center">Vanila javascript and firebase CRUD project</h2>
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">Product code</label>
-        <input type="number" id="number" class="form-control" id="formGroupExampleInput" placeholder="Number">
+        <input type="number" id="enterCode" class="form-control" placeholder="Number">
       </div>
       <div class="mb-3">
         <label for="formGroupExampleInput2" class="form-label">Product name</label>
-        <input type="text" class="form-control" id="name" placeholder="Product name">
+        <input type="text" class="form-control" id="enterName" placeholder="Product name">
       </div>
       <div class="mb-3">
         <label for="formGroupExampleInput3" class="form-label">Product quantity</label>
-        <input type="number" class="form-control" id="quantity" placeholder="Number">
+        <input type="number" class="form-control" id="enterQuantity" placeholder="Quantity">
       </div>
       <div class="row text-center">
       <div class="col-4">
-        <button type="submit" class="btn btn-primary">Insert</button>
+        <button id="insert" type="submit" class="btn btn-primary">Insert</button>
       </div>
       <div class="col-4">
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button id="update" type="submit" class="btn btn-primary">Update</button>
       </div>
       <div class="col-4">
-        <button type="submit" class="btn btn-primary">Delete</button>
+        <button id="remove" type="submit" class="btn btn-primary">Delete</button>
       </div>
       </div>
       </div>
@@ -40,10 +40,12 @@
       <h2 class="col-12 mb-5 mt-5 text-center">Find product by code</h2>
       <div class="mb-3">
         <label for="formGroupExampleInput4" class="form-label">Product code</label>
-        <input type="number" class="form-control" id="code" placeholder="Number">
+        <input type="number" class="form-control" id="selectCode" placeholder="Number">
       </div>
        <div class="col-12 text-center">
-        <button type="submit" class="btn btn-primary">Select from DB</button>
+        <button id="select" type="submit" class="btn btn-primary">Select from DB</button>
+        <h3 id="selectName" type="text"></h3>
+        <h3 id="selectQuantity" type="text"></h3>
       </div>
       <div class="input-group mb-3">
         <input type="text" id="formGroupExampleInput5" class="form-control" placeholder="Product name" aria-label="Username" aria-describedby="basic-addon1">
