@@ -55,6 +55,7 @@ function UpdateData() {
   const code = selectCode.value;
   const newName = selectName.value;
   const newQuantity = selectQuantity.value;
+  console.log(enterCode.value, enterName.value, enterQuantity.value);
   update(ref(db, "Products/" + code), {
     Name: newName,
     Quantity: newQuantity
@@ -78,6 +79,7 @@ function RemoveData() {
 
 function SelectData() {
   const code = selectCode.value;
+  console.log(enterCode.value, enterName.value, enterQuantity.value);
   get(ref(db, "Products/" + code)).then((snapshot) => {
     if (snapshot.exists()) {
       const data = snapshot.val();
