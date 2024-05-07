@@ -18,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 
-import {getDatabase, set, get, update, remove, ref, child}
+import {getDatabase, set, get, update, remove, ref}
 from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
 const db = getDatabase();
@@ -29,6 +29,7 @@ let enterQuantity = document.getElementById("enterQuantity");
 let selectCode = document.getElementById("selectCode");
 let selectName = document.getElementById("selectName");
 let selectQuantity = document.getElementById("selectQuantity");
+
 
 let insertBtn = document.getElementById("insert");
 let updateBtn = document.getElementById("update");
@@ -52,10 +53,10 @@ function InsertData(evt) {
 }
 
 function UpdateData() {
-  const code = selectCode.value;
-  const newName = selectName.value;
-  const newQuantity = selectQuantity.value;
-  console.log(enterCode.value, enterName.value, enterQuantity.value);
+  const code = enterCode.value;
+  const newName = enterName.value;
+  const newQuantity = enterQuantity.value;
+  console.log(code, newName, newQuantity);
   update(ref(db, "Products/" + code), {
     Name: newName,
     Quantity: newQuantity
@@ -97,3 +98,4 @@ insertBtn.addEventListener("click", InsertData);
 updateBtn.addEventListener("click", UpdateData);
 removeBtn.addEventListener("click", RemoveData);
 selectBtn.addEventListener("click", SelectData);
+
