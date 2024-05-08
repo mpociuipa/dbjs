@@ -60,7 +60,7 @@ function InsertData(evt) {
   }
 
   console.log(enterCode.value, enterName.value, enterQuantity.value, enterPrice.value, enterDescription.value, enterImages.value);
-  set(ref(db, "Products/" + enterCode.value), {
+  get(ref(db, "Products/" + enterCode.value), {
     Name: enterName.value,
     ID: enterCode.value,
     Quantity: enterQuantity.value,
