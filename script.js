@@ -62,7 +62,7 @@ function InsertData(evt) {
   get(ref(db, "Products/" + code)).then((snapshot)=>{
     if (snapshot.exists()){
       alert("Preke su siuo kodu jau egzistuoja");
-    }else 
+    }else {
 
 
   console.log(enterCode.value, enterName.value, enterQuantity.value, enterPrice.value, enterDescription.value, enterImages.value);
@@ -86,7 +86,7 @@ function InsertData(evt) {
     .catch((error) => {
       alert(error);
     });
-})};
+}})};
 
 function UpdateData() {
   const code = enterCode.value;
