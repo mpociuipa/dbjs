@@ -95,6 +95,7 @@ function UpdateData() {
     Quantity: newQuantity,
     Price: newPrice,
     Description: newDescription,
+    Images: newImages,
   }).then(() => {
     alert("Data updated successfully!");
   }).catch((error) => {
@@ -115,7 +116,7 @@ function RemoveData() {
 
 function SelectData() {
   const code = selectCode.value;
-  console.log(enterCode.value, enterName.value, enterQuantity.value);
+  console.log(enterCode.value, enterName.value, enterQuantity.value, enterPrice.value, enterDescription.value, enterImages.value);
   
  
   get(ref(db, "Products/" + code)).then((snapshot) => {
@@ -123,6 +124,8 @@ function SelectData() {
       const data = snapshot.val();
       selectName.value = data.Name;
       selectQuantity.value = data.Quantity;
+      selectPrice.value = data.Price;
+      selectDescription.value = data.Description;
     } else {
       alert("No such document!");
     }
